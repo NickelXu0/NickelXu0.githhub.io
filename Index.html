@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="cssPractice.css">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        .type-3 {
+            
+            border-radius: 10px;
+            border: 3px solid #FFA07A;
+            transition: .3s background-color;
+        }
+
+            .type-3:hover {
+                background-color: #FFA07A;
+            }
+
+
+        html {
+            scroll-behavior: smooth;
+            background-color: PeachPuff;
+        }
+        body {
+            font-family:sans-serif;
+            color: Sienna;
+            justify-content: center;
+            text-align: center;
+            
+            line-height: 0.1;
+        }
+
+        p {
+            font-family: 'Bradley Hand ITC';
+        }
+
+        span {
+            font-size:20px;
+        }
+
+        pre {
+            font-size: 30px;
+            font-family: 'Bradley Hand ITC';
+        }
+
+        .inputBox {
+            font-size:24px;
+            display: flex;
+            justify-content: space-between;
+            perspective: 800px;
+            width: 1000px;
+            height: 30px;
+        }
+
+        .scene {
+            /*display: inline-block;*/
+            display: flex;
+            justify-content: space-between;
+
+            perspective: 800px;
+            width: 1500px;
+            height: 520px;
+            /*   border: 1px solid #CCC; */
+            
+        }
+
+        .card {
+            position: relative;
+            left: 0px;
+            width: 350px;
+            height: 500px;
+            cursor: pointer;
+            transform-style: preserve-3d;
+            /*transform-origin: center right;*/
+            transition: transform 1s;
+        }
+
+
+
+            .card.is-flipped {
+                transform: rotateY(0.5turn);
+            }
+
+        .card__face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            
+            color: Sienna;
+            text-align: center;
+            font-weight: bold;
+            font-size: 40px;
+            backface-visibility: hidden;
+            
+        }
+
+        .cardFront {
+            background: PapayaWhip;
+
+        }
+
+        .card__face--back {
+            line-height: 260px;
+            background: BurlyWood;
+            line-height: 0.1;
+            transform: rotateY(180deg);
+            
+        }
+
+    </style>
+</head>
+
+
+
+<body>
+    <h1 style="font-size: 60px; font-family:'Bradley Hand ITC' ; line-height: 0.5 "><pre></pre><a style="color: DarkSalmon ">FOOD</a> TAROT <a style="color: DarkSalmon ">FOR</a>  YOU</h1>
+    <p style="font-size:20px; line-height:0.5;">Let the card convey the words from the God of your stomach</p>
+
+    <!--<div class="con">
+        <p id="conch-shell">this is practice</p>
+    </div>-->
+    <div class="inputBox">
+        <form>
+            Food Choices:<input style="font-size:24px" class="type-3" type="text" id="foodInput" placeholder="ex: apple, banana">
+            Drink Choices:<input style="font-size:24px" class="type-3" type="text" id="drinkInput">
+        </form>
+    </div>
+    <p>   </p>
+
+
+    <div class="scene scene--card">
+        <div id="foodCard" class="card">
+            <div class="card__face cardFront" style="font-family: 'Bradley Hand ITC';"> <img style="width:380px;height:380px" src="Food.png"> Food Card</div>
+            <div class="card__face card__face--back"> <p style="line-height: 180px" id="foodName">Food Name</p></div>
+        </div>
+        <div class="card">
+            <div id="drinkCard" class="card__face cardFront" style="font-family: 'Bradley Hand ITC'"> <img style="width:380px;height:380px" src="Coffee.png">Drink Card</div>
+            <div class="card__face card__face--back"><p style="line-height: 180px" id="drinkName">Drink Name</p></div>
+        </div>
+        <div class="card">
+            <div id="quickCard" class="card__face cardFront" style="font-family: 'Bradley Hand ITC';line-height:260px;">Quick Card</div>
+            <div class="card__face card__face--back"><img style="width:380px;height:380px" id="foodPic" src="https://pic4.zhimg.com/80/v2-e4ffb5bde28d0f4c441190a41862f207_1440.jpg"><p id="quickName">Food Name</p></div>
+        </div>
+        <div>
+            <p style="font-family: 'Bradley Hand ITC';font-size:30px;">Welcom to use Food Tarot!</p>
+            <p style="font-family: sans-serif; line-height:10px">*</p>
+            <p style="font-family: sans-serif; line-height:10px">*</p>
+            <p style="font-family: sans-serif; line-height:110px">*</p>
+            <p style="font-family: sans-serif; font-size:24px; line-height:10px">Enter the choices you have</p>
+            <p style="font-family: sans-serif; ">and let the card decide for you!</p>
+            <p style="font-family: sans-serif; line-height:150px">*</p>
+            <p style="font-family: sans-serif; font-size:24px; line-height:10px">Or just use the Quick Card!</p>
+
+        </div>
+        
+        
+    </div>
+    
+    <p id="scrollDown" style="line-height:0,1; font-size:30px">v</p>
+    <p style="font-family: papyrus; font-size:60px; line-height: 0.5;"><b>Drink Recommendation</b></p>
+    <p style="font-size:30px; line-height:0.5; color:tomato">Q: What's your plan for today?'</p>
+    <input type="checkbox" id="Study" value="Study"> <span>Study/Work</span>
+    <input type="checkbox" id="Play" value="Play"> <span>Have some fun</span>
+    <input type="checkbox" id="Nothing" value="nothing"> <span>Do nothing</span>
+    <pre style="line-height:2">
+
+</pre>
+    <pre id="drinkReco">
+ 
+    </pre>
+    <pre style="line-height:2">
+
+
+
+
+
+
+</pre>
+
+
+    <script>
+        let quickTextShow = document.getElementById('quickName');
+        let foodImageShow = document.getElementById('foodPic');
+        let drinkTextShow = document.getElementById('drinkName');
+        let foodTextShow = document.getElementById('foodName');
+
+
+        let quickList = ['Burger', 'Pasta', 'Sushi', 'Salad', 'Pork Katsu Curry', 'Ramen', 'Taco', 'Pancake', 'Pizza', 'BBQ', 'Dumplings', 'Bibimbap'];
+        let foodImages = ['Burger.png', 'Pasta.png', 'Sushi.png', 'Salad.png', 'PorkKatsuCurry.png',
+            'Ramen.png', 'Taco.png', 'Pancake.png', 'Pizza.png', 'BBQ.png', 'Dumplings.png', 'Bibimbap.png'];
+        
+        let drinkList ;
+        
+        let foodList ;
+
+        let drink = ['Water', 'Coffee', 'Tea', 'Juice', 'Soda', 'Diet Coke', 'Bubble Tea', 'Hot Cocoa'];
+        let drinkRecoText = document.getElementById('drinkReco');
+
+        var cards = document.querySelectorAll('.card');
+
+        [...cards].forEach((card) => {
+            card.addEventListener('click', function () {
+                card.classList.toggle('is-flipped');
+                //let r = Math.floor(Math.random() * foodsList.length);
+                //foodTextShow.innerText = foodsList[r];
+
+            });
+        });
+
+        var Quickcard = document.getElementById("quickCard")
+        quickCard.addEventListener('click', function () {
+
+            let r = Math.floor(Math.random() * quickList.length);
+            quickTextShow.innerText = quickList[r];
+            foodImageShow.src = foodImages[r];
+        });
+
+        var Quickcard = document.getElementById("drinkCard")
+        drinkCard.addEventListener('click', function () {
+            drinkList = document.getElementById("drinkInput").value.split(", ");
+           
+            let i = Math.floor(Math.random() * drinkList.length);
+            drinkTextShow.innerText = drinkList[i];
+            
+        });
+
+        var Quickcard = document.getElementById("foodCard")
+        foodCard.addEventListener('click', function () {
+
+            foodList = document.getElementById("foodInput").value.split(", ");
+            console.log(foodList);
+            let r = Math.floor(Math.random() * foodList.length);
+            foodTextShow.innerText = foodList[r];
+            
+        });
+
+
+
+
+        let study1 = document.getElementById('Study');
+        study1.addEventListener('change', function () {
+            if (this.checked) {
+                let rand = Math.floor(Math.random() * drink.length / 2);
+                drinkRecoText.innerText = drink[rand];
+            }
+        })
+
+        let play1 = document.getElementById('Play');
+        play1.addEventListener('change', function () {
+            if (this.checked) {
+                let rand = Math.floor((Math.random() * drink.length / 2) + drink.length / 2);
+                drinkRecoText.innerText = drink[rand];
+            }
+        })
+
+        let nothing1 = document.getElementById('Nothing');
+        nothing1.addEventListener('change', function () {
+            if (this.checked) {
+                let rand = Math.floor(Math.random() * drink.length);
+                drinkRecoText.innerText = drink[rand];
+            }
+        })
+
+        let scroll = document.getElementById('scrollDown');
+        scroll.addEventListener('click', function () {
+            window.scrollTo(0, document.body.scrollHeight);
+        })
+
+
+    </script>
+</body>
+</html>
+
